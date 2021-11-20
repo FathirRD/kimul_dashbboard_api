@@ -23,7 +23,7 @@ const createServer = async (injections) => {
     method: 'GET',
     path: '/data',
     handler: async (request, h) => {
-      const query = request.app.db.query(`SELECT * FROM sensor`);
+      const query = await request.app.db.query(`SELECT * FROM sensor`);
       const response = h.response({
         status: 'success',
         message: 'data found',
@@ -32,7 +32,6 @@ const createServer = async (injections) => {
         },
       });
       response.code(200);
-      console.log(response.statusCode);
 
       return response;
     }
