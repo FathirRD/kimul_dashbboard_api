@@ -3,7 +3,7 @@ const { Pool } = require('pg');
 
 const createServer = async (injections) => {
   const server = Hapi.server({
-    host: process.env.HOST || 0.0.0.0,
+    host: process.env.HOST || '0.0.0.0',
     port: process.env.PORT || 5000,
   });
 
