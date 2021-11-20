@@ -12,7 +12,7 @@ const createServer = async (injections) => {
     path: '/data',
     handler: async (request, h) => {
       const pool = new Pool();
-      const query = await pool.query(`SELECT * FROM sensor_data LIMIT 1`);
+      const query = await pool.query(`SELECT * FROM sensor_data LIMIT 10`);
       console.log(query);
       const result = query.rows;
       const response = h.response({
