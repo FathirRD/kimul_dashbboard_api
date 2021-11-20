@@ -14,9 +14,9 @@ const createServer = async (injections) => {
       const pool = new Pool();
       console.log(pool);
       const query = await pool.query(`SELECT * FROM sensor_data`);
-      console.log(query);
+      console.log("aaaaaaaaaa");
       const result = query.rows;
-      console.log(result);
+      console.log("aaaaaaaaaaaaaaaaaaaaa");
       const response = h.response({
         status: 'success',
         message: 'data found',
