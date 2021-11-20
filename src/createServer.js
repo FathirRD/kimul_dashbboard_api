@@ -10,7 +10,7 @@ const createServer = async (injections) => {
 
   server.route({
     method: 'GET',
-    path: '/data',
+    path: '/',
     handler: async (request, h) => {
       const pool = new Pool();
       console.log(pool);
@@ -27,6 +27,7 @@ const createServer = async (injections) => {
       });
       response.code(200);
 
+      console.log(response);
       return response;
     }
   });
