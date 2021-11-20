@@ -11,9 +11,17 @@ const createServer = async (injections) => {
     method: 'GET',
     path: '/data',
     handler: async (request, h) => {
-      const pool = new Pool();
+      const pool = new Pool({
+        host: process.env.PGHOST,
+        port: process.env.PGPORT,
+        user: process.env.PGUSER,
+        password: process.env.PGPASSWORD,
+        database: process.env.PGDATABASE,
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      });
       const query = await pool.query(`SELECT * FROM sensor_data LIMIT 10`);
-      console.log(query);
       const result = query.rows;
       const response = h.response({
         status: 'success',
