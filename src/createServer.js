@@ -1,5 +1,6 @@
 const Hapi = require('@hapi/hapi');
 const { Pool } = require('pg');
+require('dotenv').config();
 
 const createServer = async (injections) => {
   const server = Hapi.server({
