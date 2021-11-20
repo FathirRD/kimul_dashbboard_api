@@ -1,0 +1,28 @@
+{
+  "name": "kimul_api",
+  "version": "1.0.0",
+  "description": "API Test untuk data dummy iot kimul",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "start:dev": "nodemon src/app.js",
+    "test": "jest --setupFiles dotenv/config -i",
+    "test:watch:change": "jest --watch --setupFiles dotenv/config -i",
+    "test:watch": "jest --watchAll --coverage --setupFiles dotenv/config -i",
+    "lint": "eslint ./ --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^20.2.1",
+    "dotenv": "^10.0.0",
+    "hapi-plugin-mysql": "^7.2.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.15"
+  }
+}
