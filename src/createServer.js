@@ -1,6 +1,5 @@
 const Hapi = require('@hapi/hapi');
 const { Pool } = require('pg');
-require('dotenv').config();
 
 const createServer = async (injections) => {
   const server = Hapi.server({
@@ -13,7 +12,8 @@ const createServer = async (injections) => {
     path: '/data',
     handler: async (request, h) => {
       const pool = new Pool();
-      const query = await pool.query(`SELECT * FROM sensor_data`);
+      const query = await pool.query(`SELECT * FROM sensor_data LIMIT 1`);
+      console.log(query);
       const result = query.rows;
       const response = h.response({
         status: 'success',
@@ -24,7 +24,6 @@ const createServer = async (injections) => {
       });
       response.code(200);
 
-      console.log(response);
       return response;
     }
   });
