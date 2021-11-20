@@ -1,4 +1,5 @@
 const Hapi = require('@hapi/hapi');
+const { Pool } = require('pg');
 
 const createServer = async (injections) => {
   const server = Hapi.server({
@@ -6,29 +7,18 @@ const createServer = async (injections) => {
     port: process.env.PORT,
   });
 
-  await server.register([
-    {
-      plugin: require('hapi-plugin-mysql'),
-      options: {
-          host: process.env.DBHOST,
-          user: process.env.DBUSER,
-          password: process.env.DBPASSWORD,
-          database: process.env.DBNAME,
-          insecureAuth : true
-      },
-    },
-  ]);
-
   server.route({
     method: 'GET',
     path: '/data',
     handler: async (request, h) => {
-      const query = await request.app.db.query(`SELECT * FROM sensor`);
+      const pool = new Pool();
+      const query = await pool.query(`SELECT * FROM sensor_data`);
+      const result = query.rows;
       const response = h.response({
         status: 'success',
         message: 'data found',
         data: {
-          query,
+          result,
         },
       });
       response.code(200);
